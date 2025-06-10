@@ -15,6 +15,20 @@ def launch_tool(tool_scripts):
     print(f"Could not run tool: {e}")
 
 def main():
+  # Print ASCII art banner
+  print(r"""
+  [*] Initializing interface...
+  [*] Loading modules...
+  [*] Welcome back, operator. Time to recon.
+      
+██████   █████  ██    ██ ███████ ███    ██     ██████  ██    ██ ██      ███████ ███████ 
+██   ██ ██   ██ ██    ██ ██      ████   ██     ██   ██ ██    ██ ██      ██      ██      
+██████  ███████ ██    ██ █████   ██ ██  ██     ██████  ██    ██ ██      ███████ █████   
+██   ██ ██   ██  ██  ██  ██      ██  ██ ██     ██      ██    ██ ██           ██ ██      
+██   ██ ██   ██   ████   ███████ ██   ████     ██       ██████  ███████ ███████ ███████ 
+        
+            🛡️  Recon Suite - Aegis Hunter Offensive Toolkit 🔓                                                                                  
+  """)
   # Create the argument parser
   parser = argparse.ArgumentParser(description="🛠️ Recon Suite - Cybersecurity Tools")
   subparsers = parser.add_subparsers(dest="tool", help="Available tools")
@@ -23,7 +37,6 @@ def main():
   subparsers.add_parser("password_checker", help="Run the  password strength checker tool")
 
   args = parser.parse_args()
-
 
   if args.tool == "password_checker":
     # Call the password checker tool
@@ -34,3 +47,4 @@ def main():
 if __name__ == "__main__":
     main()
 # This is the main entry point for the Recon Suite application.
+
