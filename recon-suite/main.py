@@ -10,7 +10,7 @@ def launch_tool(tool_scripts):
   #Launch a tool script from the modules directory
   tool_path = os.path.join("modules", tool_scripts)
   try:
-    subprocess.run(["python", tool_path])
+    subprocess.run(["python3", tool_path])
   except Exception as e:
     print(f"Could not run tool: {e}")
 
@@ -31,6 +31,6 @@ def main():
   else:
     print("Please specify a valid tool. Available tools: password_checker")
 
-    if __name__ == "__main__":
-      main()
+if __name__ == "__main__":
+    main()
 # This is the main entry point for the Recon Suite application.

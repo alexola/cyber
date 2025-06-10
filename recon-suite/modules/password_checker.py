@@ -31,7 +31,7 @@ def check_pwd_strength(password):
   if re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
     strength += 1
   else:
-    feedback.append('Speacial characters are cool , let use one minimum')
+    feedback.append('Special characters are cool , let use one minimum')
 
   #Table for rating how strong the password is
 
@@ -45,3 +45,9 @@ def check_pwd_strength(password):
   }
 
   return rating[strength], feedback
+
+if __name__ == "__main__":
+    pwd = input("Enter a password to check: ")
+    rating, feedback = check_pwd_strength(pwd)
+    print(f"Strength: {rating}")
+    print("Feedback:", "; ".join (feedback))
