@@ -31,7 +31,7 @@ Clone the repo:
 ```bash
 git clone https://github.com/alexola/cyber.git
 cd cyber
-
+```
 ---
 
 ## 🔐 Password Strength Checker
