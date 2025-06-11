@@ -27,7 +27,7 @@ def main():
 ██   ██ ██   ██  ██  ██  ██      ██  ██ ██     ██      ██    ██ ██           ██ ██      
 ██   ██ ██   ██   ████   ███████ ██   ████     ██       ██████  ███████ ███████ ███████ 
         
-            🛡️  Recon Suite - Aegis Hunter Offensive Toolkit 🔓                                                                                  
+            🛡️  Recon Suite - Aegis Hunter Toolkit 🔓                                                                                  
   """)
   # Create the argument parser
   parser = argparse.ArgumentParser(description="🛠️ Recon Suite - Cybersecurity Tools")
