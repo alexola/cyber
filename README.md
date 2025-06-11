@@ -8,8 +8,8 @@ A powerful, modular suite of Python-based cybersecurity toolset . Built for lear
 ---
 ## ✅ Completed Tools
   - [x] **Password Strength Checker**
-  - Checks password complexity
-  - Optional entropy scoring (coming soon)
+  - [x] **Checks password complexity**
+  - [x] **Optional entropy scoring (coming soon)**
 
 
 ## 🚧 Tools in Progress
