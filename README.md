@@ -75,7 +75,7 @@ So please feel free to fork the project, work on a feature/tool, and open a pull
 
 ## 📜 License
 
-MIT License — see the `LICENSE` file for full details.
+MIT License — see the [`LICENSE`](LICENSE) file for full details.
 
 ---
 
