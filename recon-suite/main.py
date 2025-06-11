@@ -29,6 +29,9 @@ def main():
         
             🛡️  Recon Suite - Aegis Hunter Toolkit 🔓                                                                                  
   """)
+  print("Available tools:")
+  print("1. Password Checker - Check the strength of your passwords")
+  print("0. Exit")
   # Create the argument parser
   parser = argparse.ArgumentParser(description="🛠️ Recon Suite - Cybersecurity Tools")
   subparsers = parser.add_subparsers(dest="tool", help="Available tools")
