@@ -1,19 +1,42 @@
-# Byte-compiled files
+# =========================
+# 🐍 Python Bytecode / Caches
+# =========================
 __pycache__/
 *.py[cod]
+*.so
+*.pyd
+*.pyo
 
-# Distribution / packaging
-.Python
+# =========================
+# 📦 Environment / Packaging
+# =========================
+.env/
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+.venv/
+.Python
 *.egg-info/
 dist/
 build/
+__pypackages__/
 
-# IDE and editor files
+# =========================
+# 🧪 Test / Tooling Caches
+# =========================
+.pytest_cache/
+.coverage
+.tox/
+.nox/
+.mypy_cache/
+.cache/
+.ipynb_checkpoints/
+
+# =========================
+# 🧠 IDE / Editor Files
+# =========================
 .vscode/
 .idea/
 *.swp
@@ -21,12 +44,27 @@ build/
 *.sublime-project
 *.sublime-workspace
 
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints
+# =========================
+# 🧹 OS-Specific Files
+# =========================
+.DS_Store  # macOS
+Thumbs.db  # Windows
 
-# Logs
+# =========================
+# 📝 Logs / Temporary Files
+# =========================
 *.log
-
-# Temporary files
 *.tmp
 *.temp
+
+# =========================
+# 🧪 Generated Files
+# =========================
+*.bak
+*.orig
+*.old
+
+# =========================
+# 📁 Project Specific
+# =========================
+logo.png  # optional: if you don't want to track design files
