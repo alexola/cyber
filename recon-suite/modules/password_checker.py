@@ -1,6 +1,6 @@
-# re = regular expressions, helps us check if the password has certain patterns
-
-import re 
+import string #-> access common character set like letters, digits, and punctuation
+import math # -> calculating the entropy of the password
+import re  # -> regular expressions, helps us check if the password has certain patterns
 
 def check_pwd_strength(password):
   if not isinstance(password, str):
@@ -46,8 +46,40 @@ def check_pwd_strength(password):
 
   return rating[strength], feedback
 
+def estimate_entropy(password):
+    # Calculate the entropy of the password
+    charset = 0
+    if any(c.islower() for c in password):
+        charset += 26 # a-z lowercase letters
+    if any(c.isupper() for c in password):
+        charset += 26 # A-Z uppercase letters
+    if any(c.isdigit() for c in password):
+        charset += 10 # 0-9 digits
+    if any(c in "!@#$%^&*()-_=+[]{}|;:',.<>?/" for c in password):
+        charset += 32 # Common special characters
+    if any(c.isspace() for c in password):
+        charset += 1 # White space characters
+
+    if charset == 0 or len(password) == 0:
+        return 0 # avoid division by zero
+
+    # Calculate entropy
+    entropy = len(password) * math.log2(charset)
+    return round(entropy, 2)
+
 if __name__ == "__main__":
     pwd = input("Enter a password to check: ")
     rating, feedback = check_pwd_strength(pwd)
+    entropy = estimate_entropy(pwd)
+
     print(f"Strength: {rating}")
     print("Feedback:", "; ".join (feedback))
+
+    # Show entropy how strong the password is based on bits
+    print(f"Estimated Entropy: {entropy} bits")
+    if entropy < 40:
+        print(f"Entropy Rating: Weak ❌")
+    elif 40 <= entropy < 60:
+        print(f"Entropy Rating: Moderate ⚠️")
+    else:
+        print(f"Entropy Rating: Strong ✅")
