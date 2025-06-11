@@ -6,14 +6,14 @@ A powerful, modular suite of Python-based cybersecurity toolset . Built for lear
 > ⚙️ This project was created as a hands-on journey to sharpen coding skills and to gain the confidence and capability to build custom cybersecurity tools from scratch.
 
 ---
-## ✅ Completed Tools
+
+## ✅ Completed Tools
   - [x] **Password Strength Checker**
   - [x] **Checks password complexity**
   - [x] **Optional entropy scoring (coming soon)**
 
-
-## 🚧 Tools in Progress
-- [ ] **Port Scanner**
+## 🚧 Tools in Progress
+- [ ] **Port Scanner(WIP)**
 - [ ] **Subdomain Enumerator**
 - [ ] **Whois + DNS Recon Tool**
 - [ ] **Simple Packet Sniffer**
