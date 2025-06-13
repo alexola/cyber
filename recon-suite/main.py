@@ -34,6 +34,7 @@ def main():
   print("1. Password Checker - Check the strength of your passwords")
   print("0. Exit")
   
+  #we should add a loop to keep the menu running until the user decides to exit
   choice = input("\nSelect a tool you want to run or type '0' to exit: ")
   if choice == '1':
     launch_tool("password_checker.py")
