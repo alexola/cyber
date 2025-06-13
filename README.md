@@ -1,7 +1,8 @@
 ![alt text](logo.png)
 
 
-A powerful, modular suite of Python-based cybersecurity toolset . Built for learning, testing, and enhancing both offensive and defensive security skills that I have been learning an turn them into a real life project.
+A powerful, modular suite of Python-based cybersecurity tools. Built for learning, testing, and enhancing both offensive and defensive security skills that I have been learning and turning into a real-life project.
+
 
 > ⚙️ This project was created as a hands-on journey to sharpen coding skills and to gain the confidence and capability to build custom cybersecurity tools from scratch.
 
@@ -36,12 +37,17 @@ cd cyber
 
 ## 🔐 Password Strength Checker
 
-This a tool that evaluates the strength of user-provided passwords based on length, character variety, and more.
+This is a tool that ## ✨ Features
+
+- Modular design: easily add new tools
+- Menu-driven interface for easy tool selection
+- Password strength checker with entropy scoring
+- Clean codebase and repository hygieneevaluates the strength of user-provided passwords based on length, character variety, and more.
 
 ### Usage
 
 ```bash
-python password_checker.py
+python3 recon-suite/main.py
 ```
 ### Output Example
 
@@ -81,4 +87,4 @@ MIT License — see the [`LICENSE`](LICENSE) file for full details.
 
 ### 👩‍💻 Author
 
-**GitHub**: [alexola](https://github.com/alexola)
+**GitHub**: [alexola](https://github.com/alexola)python recon-suite/main.py
