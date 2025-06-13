@@ -1,5 +1,4 @@
-# Import the argparse module to handle command-line arguments
-import argparse
+
 import subprocess
 import os
 
@@ -29,34 +28,20 @@ def main():
         
             🛡️  Recon Suite - Aegis Hunter Toolkit 🔓                                                                                  
   """)
-  
-  print("Available tools:")
-  print("1. Password Checker - Check the strength of your passwords")
-  print("0. Exit")
-  
-  #we should add a loop to keep the menu running until the user decides to exit
-  choice = input("\nSelect a tool you want to run or type '0' to exit: ")
-  if choice == '1':
-    launch_tool("password_checker.py")
-  elif choice == '0':
-    print("Exiting Recon Suite. Goodbye!")
-  else:
-    print("Invalid choice. Please try again.")
+  while True:
+    print("\nAvailable tools:")
+    print("1. Password Checker - Check the strength of your passwords")
+    print("0. Exit")
 
-  # Create the argument parser
-  parser = argparse.ArgumentParser(description="🛠️ Recon Suite - Cybersecurity Tools")
-  subparsers = parser.add_subparsers(dest="tool", help="Available tools")
-  
-  # Add subparsers for each tool
-  subparsers.add_parser("password_checker", help="Run the  password strength checker tool")
-
-  args = parser.parse_args()
-
-  if args.tool == "password_checker":
-    # Call the password checker tool
-    launch_tool("password_checker.py")
-  else:
-    print("Please specify a valid tool. Available tools: password_checker")
+    #we should add a loop to keep the menu running until the user decides to exit
+    choice = input("\nSelect a tool you want to run or type '0' to exit: ")
+    if choice == '1':
+      launch_tool("password_checker.py")
+    elif choice == '0': # Exit option 
+      print("Exiting Recon Suite. Goodbye!")
+      break
+    else:
+      print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     main()
