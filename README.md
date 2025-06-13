@@ -37,7 +37,7 @@ cd cyber
 
 ## 🔐 Password Strength Checker
 
-This is a tool that ## ✨ Features
+✨ Features
 
 - Modular design: easily add new tools
 - Menu-driven interface for easy tool selection
@@ -87,4 +87,4 @@ MIT License — see the [`LICENSE`](LICENSE) file for full details.
 
 ### 👩‍💻 Author
 
-**GitHub**: [alexola](https://github.com/alexola)python recon-suite/main.py
+**GitHub**: [alexola](https://github.com/alexola)
