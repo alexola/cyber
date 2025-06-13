@@ -29,9 +29,19 @@ def main():
         
             🛡️  Recon Suite - Aegis Hunter Toolkit 🔓                                                                                  
   """)
+  
   print("Available tools:")
   print("1. Password Checker - Check the strength of your passwords")
   print("0. Exit")
+  
+  choice = input("\nSelect a tool you want to run or type '0' to exit: ")
+  if choice == '1':
+    launch_tool("password_checker.py")
+  elif choice == '0':
+    print("Exiting Recon Suite. Goodbye!")
+  else:
+    print("Invalid choice. Please try again.")
+
   # Create the argument parser
   parser = argparse.ArgumentParser(description="🛠️ Recon Suite - Cybersecurity Tools")
   subparsers = parser.add_subparsers(dest="tool", help="Available tools")
