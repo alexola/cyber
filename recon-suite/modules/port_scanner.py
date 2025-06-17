@@ -28,7 +28,7 @@ def scan_ports(target, start_port=1, end_port=1024):
             result = sock.connect_ex((target, port))  # Attempt to connect to the port
 
             if result == 0:  # If the connection was successful
-                print(f"Port {port} is open") #Display the open port
+                tqdm.write(f"Port {port} is open") #Display the open port
                 open_ports.append(port)  # Saves the open port to the list
 
             sock.close()  # Close the socket connection
