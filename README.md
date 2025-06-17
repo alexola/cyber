@@ -33,6 +33,12 @@ Clone the repo:
 git clone https://github.com/alexola/cyber.git
 cd cyber
 ```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
 ---
 
 ## 🔐 Password Strength Checker
