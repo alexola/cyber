@@ -35,6 +35,11 @@ def scan_ports(target, start_port=1, end_port=1024):
 
     except KeyboardInterrupt: # User interrupts the scan
         print("\nScan aborted by user. (Ctrl+C)") 
+        if open_ports: # If there are any open ports found before the scan was aborted will show up.
+            print(f"\nOpen ports found so far: {open_ports}")
+        else:
+            print("No open ports found before the scan was aborted.")
+        return open_ports  # Return the list of open ports found so far.
     except socket.gaierror:  # If the target is not resolvable
         print("Hostname could not be resolved. Please check the target IP or hostname.")
     except socket.error:  # If there is a socket error
