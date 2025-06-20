@@ -23,7 +23,7 @@ def scan_ports(target, start_port=1, end_port=1024):
 
         for port in tqdm(range(start_port, end_port + 1), desc="Scanning ports", unit="port"):
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.settimeout(1)  # Set a timeout for the connection attempt
+            sock.settimeout(0.3)  # Set a timeout for the connection attempt
             
             result = sock.connect_ex((target, port))  # Attempt to connect to the port
 
