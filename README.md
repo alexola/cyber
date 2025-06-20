@@ -11,10 +11,9 @@ A powerful, modular suite of Python-based cybersecurity tools. Built for learnin
 ## ✅ Completed Tools
   - [x] **Password Strength Checker**
   - [x] **Checks password complexity**
-  - [x] **Optional entropy scoring (coming soon)**
-
+  - [x] **Optional entropy scoring**
+  - [x] **Port Scanner /Working on stealth mode**
 ## 🚧 Tools in Progress
-- [ ] **Port Scanner(WIP)**
 - [ ] **Subdomain Enumerator**
 - [ ] **Whois + DNS Recon Tool**
 - [ ] **Simple Packet Sniffer**
