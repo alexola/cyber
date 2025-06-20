@@ -36,15 +36,18 @@ def main():
 
     #we should add a loop to keep the menu running until the user decides to exit
     choice = input("\nSelect a tool you want to run or type '0' to exit: ")
-    if choice == '1':
-      launch_tool("password_checker.py")
-    elif choice == '2':
-      launch_tool("port_scanner.py")
-    elif choice == '0': # Exit option 
-      print("Exiting Recon Suite. Goodbye!")
-      break
-    else:
-      print("Invalid choice. Please try again.")
+    try:
+        if choice == '1':
+            launch_tool("password_checker.py")
+        elif choice == '2':
+            launch_tool("port_scanner.py")
+        elif choice == '0':
+            print("Exiting Recon Suite. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+    except KeyboardInterrupt:
+        print("\nOperation cancelled by user. Returning to menu...")
 
 if __name__ == "__main__":
     main()
