@@ -23,7 +23,7 @@ def check_pwd_strength(password):
   else:
     feedback.append('It is important to keep at least one lowercase letter in your password.')
   
-  if re.search(r"[09]", password):
+  if re.search(r"[0-9]", password):
     strength +=1
   else:
     feedback.append('Numbers are important in the password , at least one.')
@@ -43,8 +43,8 @@ def check_pwd_strength(password):
     1: "Very Weak",
     0: "Extremely Weak"
   }
-
-  return rating[strength], feedback
+  entropy = estimate_entropy(password) #Estimate the entropy of the password
+  return rating[strength], feedback, entropy
 
 def estimate_entropy(password):
     # Calculate the entropy of the password
@@ -69,8 +69,7 @@ def estimate_entropy(password):
 
 if __name__ == "__main__":
     pwd = input("Enter a password to check: ")
-    rating, feedback = check_pwd_strength(pwd)
-    entropy = estimate_entropy(pwd)
+    rating, feedback, entropy = check_pwd_strength(pwd)
 
     print(f"Strength: {rating}")
     print("Feedback:", "; ".join (feedback))
