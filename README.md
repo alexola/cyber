@@ -12,7 +12,7 @@ A powerful, modular suite of Python-based cybersecurity tools. Built for learnin
   - [x] **Password Strength Checker**
   - [x] **Checks password complexity**
   - [x] **Optional entropy scoring**
-  - [x] **Port Scanner /Working on stealth mode**
+  - [x] **Port Scanner /Normal mode & Stealth mode (WIP unittest)**
 ## 🚧 Tools in Progress
 - [ ] **Subdomain Enumerator**
 - [ ] **Whois + DNS Recon Tool**
@@ -93,3 +93,10 @@ MIT License — see the [`LICENSE`](LICENSE) file for full details.
 ### 👩‍💻 Author
 
 **GitHub**: [alexola](https://github.com/alexola)
+
+> ⚠️ **Note:**  
+> To use the port scanner in **stealth mode**, you must run the program with administrator privileges:
+> - On macOS/Linux: use `sudo python3 recon-suite/main.py`
+> - On Windows: run your terminal as Administrator
+>
+> This is required for sending raw packets (SYN scans) with Scapy.
