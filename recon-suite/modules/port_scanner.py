@@ -77,7 +77,7 @@ def scan_ports(target, start_port=1, end_port=1024, mode="normal"):
         else:
             print("No open ports found before the scan was aborted.")
         return open_ports  # Return the list of open ports found so far.
-    except socket.gaierror:  # If the target is not resolvable
+    except socket.gaierror:  # If the target is not resolvable0
         print("Hostname could not be resolved. Please check the target IP or hostname.")
     except socket.error:  # If there is a socket error
         print("Could not connect to server. It might be down.")
@@ -88,6 +88,7 @@ def scan_ports(target, start_port=1, end_port=1024, mode="normal"):
     else:
         print("No open ports found.")  # Return the list of open ports found during the scan.
     return open_ports
+
 
 if __name__ == "__main__":
     target_input = input("Enter the target IP address or hostname: ").strip()
