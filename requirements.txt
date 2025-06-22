@@ -1,5 +1,4 @@
 # Recon Suite - Cybersecurity Reconnaissance Toolkit
 
 tqdm
-
 scapy
