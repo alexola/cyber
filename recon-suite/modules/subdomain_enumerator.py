@@ -50,7 +50,7 @@ def enumerate_domain(domain: str, prefixes: list[str], threads: int = 50): #Func
 
 def main(): #Main function to parse arguments and run the subdomain enumeration
     parser =argparse.ArgumentParser(description="Subdomain Enumerator")
-    parser.add_argument("domain", type=str, help="Root domain (e.g., example.com )")
+    parser.add_argument("domain", type=str, nargs="?", help="Root domain (e.g., example.com )")
     parser.add_argument(
         "-w", "--wordlist",
         type=Path,
@@ -63,6 +63,12 @@ def main(): #Main function to parse arguments and run the subdomain enumeration
     )
     args = parser.parse_args()
 
+    if not args.domain:
+        args.domain = input("Enter the root domain (e.g., example.com): ").strip()
+
+    if args.wordlist is None:
+        args.wordlist = Path(__file__).parent.parent / "utils" / "wordlists" / "subdomain.txt"
+
     if not args.wordlist.exists():
         print("f[!] Wordlist file not found: {args.wordlist}")
         return
@@ -71,14 +77,7 @@ def main(): #Main function to parse arguments and run the subdomain enumeration
     print(f"[*] Loaded {len(prefixes)} subdomains prefixes")
     print(f"[*] Enumerating subdomains for: {args.domain}\n")
 
-    enumerate_subdomains(args.domain, prefixes, threads=args.threads)
+    enumerate_domain(args.domain, prefixes, threads=args.threads)
 
 if __name__ == "__main__":
-    # Minimal test: use a few common subdomains and a known domain
-    test_subdomains = ["www", "mail", "ftp"]
-    test_domain = "fishsurfschool.com"  # Example domain for testing
-    print(f"[*] Testing enumerate_domain with {test_domain} and subdomains: {test_subdomains}")
-    found = enumerate_domain(test_domain, test_subdomains, threads=5)
-    print(f"\n[+] Found {len(found)} subdomains:")
-    for host, ips in found.items():
-        print(f"{host} -> {', '.join(ips)}")
+    main()
