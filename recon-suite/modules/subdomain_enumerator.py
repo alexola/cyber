@@ -48,16 +48,37 @@ def enumerate_domain(domain: str, prefixes: list[str], threads: int = 50): #Func
                 print(f"[*] Found: {host} -> {', '.join(ips)}")
     return found
 
-if __name__ == "__main__":
-    wordlist_path = Path(__file__).parent.parent / "utils" / "wordlists" / "subdomain.txt"
-    subdomains = load_wordlist(wordlist_path)
-    test_domain = "google.com"  # Or any domain you want to test
+def main(): #Main function to parse arguments and run the subdomain enumeration
+    parser =argparse.ArgumentParser(description="Subdomain Enumerator")
+    parser.add_argument("domain", type=str, help="Root domain (e.g., example.com )")
+    parser.add_argument(
+        "-w", "--wordlist",
+        type=Path,
+        help="Path to subd-domain wordlist (default: utils/wordlists/subdomain.txt)",
+    )
+    parser.add_argument( #Argument for number of threads to use.Threads are used to speed up the enumeration process
+        "-t", "--threads",
+        type=int, default=50,
+        help="Number of threads to use for enumeration (default:50)"
+    )
+    args = parser.parse_args()
 
-    if subdomains:
-        print(f"[*] Enumerating subdomains for {test_domain} ...")
-        found = enumerate_domain(test_domain, subdomains[:10])  # Test with first 10 subdomains for speed
-        print(f"\n[+] Found {len(found)} subdomains:")
-        for host, ips in found.items():
-            print(f"{host} -> {', '.join(ips)}")
-    else:
-        print("[-] No subdomains loaded from wordlist.")
+    if not args.wordlist.exists():
+        print("f[!] Wordlist file not found: {args.wordlist}")
+        return
+
+    prefixes = load_wordlist(args.wordlist)  # Load the wordlist
+    print(f"[*] Loaded {len(prefixes)} subdomains prefixes")
+    print(f"[*] Enumerating subdomains for: {args.domain}\n")
+
+    enumerate_subdomains(args.domain, prefixes, threads=args.threads)
+
+if __name__ == "__main__":
+    # Minimal test: use a few common subdomains and a known domain
+    test_subdomains = ["www", "mail", "ftp"]
+    test_domain = "fishsurfschool.com"  # Example domain for testing
+    print(f"[*] Testing enumerate_domain with {test_domain} and subdomains: {test_subdomains}")
+    found = enumerate_domain(test_domain, test_subdomains, threads=5)
+    print(f"\n[+] Found {len(found)} subdomains:")
+    for host, ips in found.items():
+        print(f"{host} -> {', '.join(ips)}")
