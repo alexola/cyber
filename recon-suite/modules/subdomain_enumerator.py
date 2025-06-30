@@ -28,7 +28,7 @@ def resolve_domain(sub: str, domain: str, resolver_obj: dns.resolver.Resolver): 
             dns.resolver.NoAnswer,  #No A record found
             dns.resolver.Timeout,
             dns.exception.DNSException): #Invalid DNS response
-      return None
+        return None
 
 def enumerate_domain(domain: str, prefixes: list[str], threads: int = 50): #Function to enumerate subdomains for a given domain
     found = {}
