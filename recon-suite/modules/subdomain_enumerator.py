@@ -1,7 +1,8 @@
 import argparse
 import concurrent.futures #For threading and multiprocessing
 import dns.resolver # dnspython does the DNS lookups
-from pathlib import Path 
+from pathlib import Path  #For file path handling
+from tqdm import tqdm #Progress bar for the enumeration process
 
 #Load the wordlist of the subdomain prefixes
 
@@ -39,13 +40,13 @@ def enumerate_domain(domain: str, prefixes: list[str], threads: int = 50): #Func
     with concurrent.futures.ThreadPoolExecutor(max_workers=threads) as pool: #Make a thread pool to resolve subdomains
         tasks = {
             pool.submit(resolve_domain, sub, domain, resolver_obj): sub for sub in prefixes
-        } 
-        for future in concurrent.futures.as_completed(tasks): #Will wait for all futures to complete
+        }
+        for future in tqdm(concurrent.futures.as_completed(tasks), total=len(tasks), desc="Enumerating"):
             result = future.result()
             if result:
                 host, ips = result
                 found[host] = ips
-                print(f"[*] Found: {host} -> {', '.join(ips)}")
+                tqdm.write(f"[*] Found: {host} -> {', '.join(ips)}") # Print the found subdomain and its IPs addresses
     return found
 
 def main(): #Main function to parse arguments and run the subdomain enumeration
@@ -70,7 +71,7 @@ def main(): #Main function to parse arguments and run the subdomain enumeration
         args.wordlist = Path(__file__).parent.parent / "utils" / "wordlists" / "subdomain.txt"
 
     if not args.wordlist.exists():
-        print("f[!] Wordlist file not found: {args.wordlist}")
+        print(f"[!] Wordlist file not found: {args.wordlist}")
         return
 
     prefixes = load_wordlist(args.wordlist)  # Load the wordlist
