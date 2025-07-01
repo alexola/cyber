@@ -13,7 +13,7 @@ A powerful, modular suite of Python-based cybersecurity tools. Built for learnin
   - [x] **Checks password complexity**
   - [x] **Optional entropy scoring**
   - [x] **Port Scanner /Normal & Stealth mode**
-  - [X] **Subdomain Enumerator**
+  - [X] **Subdomain Enumerator Working on Stealth mode**
 
 ## 🚧 Tools in Progress
 - [ ] **Whois + DNS Recon Tool**
