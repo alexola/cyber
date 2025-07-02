@@ -3,6 +3,10 @@ import concurrent.futures #For threading and multiprocessing
 import dns.resolver # dnspython does the DNS lookups
 from pathlib import Path  #For file path handling
 from tqdm import tqdm #Progress bar for the enumeration process
+import asyncio 
+import random
+import dns.asyncresolver
+
 
 #Load the wordlist of the subdomain prefixes
 
@@ -48,6 +52,15 @@ def enumerate_domain(domain: str, prefixes: list[str], threads: int = 50): #Func
                 found[host] = ips
                 tqdm.write(f"[*] Found: {host} -> {', '.join(ips)}") # Print the found subdomain and its IPs addresses
     return found
+
+async def resolve_async(sub, domain, resolver): #Async function to resolve a subodomain if it has an A record
+    full = f"{sub}.{domain}" 
+    try:
+        ans = await resolver.resolve(full, "A", lifetime=3) # Resolve the subdomain ensuring it has an A record
+        return full, [r.address for r in ans] 
+    except dns.exception.DNSException:
+        return None #If the subdomain does not have an A record, will return None
+
 
 def main(): #Main function to parse arguments and run the subdomain enumeration
     parser =argparse.ArgumentParser(description="Subdomain Enumerator")
