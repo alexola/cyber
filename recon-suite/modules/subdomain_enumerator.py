@@ -57,9 +57,34 @@ async def resolve_async(sub, domain, resolver): #Async function to resolve a sub
     full = f"{sub}.{domain}" 
     try:
         ans = await resolver.resolve(full, "A", lifetime=3) # Resolve the subdomain ensuring it has an A record
-        return full, [r.address for r in ans] 
+        return full, [r.address for r in ans]
     except dns.exception.DNSException:
         return None #If the subdomain does not have an A record, will return None
+
+async def enumerate_async(domain, prefixes, max_qps=8): #Async function to enumerate subdomains
+    random.shuffle(prefixes)
+    resolver = dns.asyncresolver.Resolver() 
+    resolver.lifetime = 3 
+    found = {}
+    sem = asyncio.Semaphore(max_qps)
+
+    async def worker(sub): #Worker function to resolve subdomains
+        async with sem: #Limit the number of concurrent requests
+            await asyncio.sleep(random.uniform(0.05, 0.25)) # Random delay to avoid rate limiting
+            return await resolve_async(sub, domain, resolver)
+        
+    tasks = [asyncio.create_task(worker(p)) for p in prefixes] #Create a list of tasks to resolve subdomains
+    for coro in tqdm(asyncio.as_completed(tasks), total=len(tasks), desc="Stealth Enumerating"):
+        result = await coro
+        if result:
+            host, ips = result
+            found[host]= ips
+            tqdm.write(f"[*] Found: {host} -> {', '.join(ips)}")
+    return found
+
+def enumerate_domain_stealth(domain, prefixes, max_qps=8):
+    return asyncio.run(enumerate_async(domain, prefixes, max_qps))
+        
 
 
 def main(): #Main function to parse arguments and run the subdomain enumeration
@@ -75,6 +100,16 @@ def main(): #Main function to parse arguments and run the subdomain enumeration
         type=int, default=50,
         help="Number of threads to use for enumeration (default:50)"
     )
+    parser.add_argument(
+        "--stealth",
+        action="store_true",
+        help="Enable stealth mode (randomize, throttle, jitter, async)"
+    )
+    parser.add_argument(
+        "--qps",
+        type=int, default=8,
+        help="Max queries per second in stealth mode (default: 8)"
+    )
     args = parser.parse_args()
 
     if not args.domain:
@@ -88,10 +123,20 @@ def main(): #Main function to parse arguments and run the subdomain enumeration
         return
 
     prefixes = load_wordlist(args.wordlist)  # Load the wordlist
-    print(f"[*] Loaded {len(prefixes)} subdomains prefixes")
+    print(f"[*] Loaded {len(prefixes)} subdomain prefixes")
     print(f"[*] Enumerating subdomains for: {args.domain}\n")
 
-    enumerate_domain(args.domain, prefixes, threads=args.threads)
+    # Interactive mode selection
+    stealth = args.stealth
+    if not args.stealth:
+        choice = input("Choose mode [default: 1]: \n[1] Normal (fast, noisy)  \n[2] Stealth (slow, stealthy) ").strip()
+        if choice == "2":
+            stealth = True
+
+    if stealth:
+        enumerate_domain_stealth(args.domain, prefixes, max_qps=args.qps)
+    else:
+        enumerate_domain(args.domain, prefixes, threads=args.threads)
 
 if __name__ == "__main__":
     main()
