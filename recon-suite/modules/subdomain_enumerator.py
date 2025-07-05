@@ -70,7 +70,7 @@ async def enumerate_async(domain, prefixes, max_qps=8): #Async function to enume
 
     async def worker(sub): #Worker function to resolve subdomains
         async with sem: #Limit the number of concurrent requests
-            await asyncio.sleep(random.uniform(0.05, 0.25)) # Random delay to avoid rate limiting
+            await asyncio.sleep(random.uniform(0.2, 1.0))  # More delay for stealth
             return await resolve_async(sub, domain, resolver)
         
     tasks = [asyncio.create_task(worker(p)) for p in prefixes] #Create a list of tasks to resolve subdomains
@@ -116,7 +116,13 @@ def main(): #Main function to parse arguments and run the subdomain enumeration
         args.domain = input("Enter the root domain (e.g., example.com): ").strip()
 
     if args.wordlist is None:
-        args.wordlist = Path(__file__).parent.parent / "utils" / "wordlists" / "subdomain.txt"
+        default_wordlist = Path(__file__).parent.parent / "utils" / "wordlists" / "subdomains.txt"
+        print(f"Default wordlist: {default_wordlist}")
+        custom_path = input("Enter path to a custom wordlist file or press Enter to use the default: ").strip()
+        if custom_path:
+            args.wordlist = Path(custom_path)
+        else:
+            args.wordlist = default_wordlist
 
     if not args.wordlist.exists():
         print(f"[!] Wordlist file not found: {args.wordlist}")
