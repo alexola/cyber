@@ -66,6 +66,30 @@ Feedback: Good job! Try not to reuse this password across sites.
 
 ---
 
+## 🌐 Subdomain Enumerator
+
+Supports both normal and stealth modes.  
+You can use your own wordlist with `-w` or `--wordlist`.
+
+### Usage
+
+```bash
+python3 [subdomain_enumerator.py](http://_vscodecontentref_/1) example.com
+```
+
+### Output Example
+
+```
+[*] Loaded 1000 subdomain prefixes
+[*] Enumerating subdomains for: example.com
+
+[*] Found: www.example.com -> 93.184.216.34
+[*] Found: mail.example.com -> 93.184.216.34
+...
+```
+
+---
+
 ## 🧼 Repository Hygiene
 
 To maintain a clean, efficient project, we’ve included a `.gitignore` file to exclude:
