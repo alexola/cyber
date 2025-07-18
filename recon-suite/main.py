@@ -32,6 +32,7 @@ def main():
     print("1. Password Checker - Check the strength of your passwords")
     print("2. Port Scanner - Scan for open ports on a target / stealth scan")
     print("3. Subdomain Enumerator - Enumerate subdomains for a given domain")
+    print("4. WHOIS and DNS Lookup - Get WHOIS and DNS records for a domain")
     print("0. Exit")
 
     #we should add a loop to keep the menu running until the user decides to exit
@@ -43,6 +44,8 @@ def main():
             launch_tool("port_scanner.py")
         elif choice == '3':
             launch_tool("subdomain_enumerator.py")
+        elif choice == '4':
+            launch_tool("dns-whois.py")
         elif choice == '0':
             print("Exiting Recon Suite. Goodbye!")
             break
