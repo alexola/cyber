@@ -3,3 +3,5 @@
 tqdm
 scapy
 dnspython==2.4.2
+python-whois
+dnspython
