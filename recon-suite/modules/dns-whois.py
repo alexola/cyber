@@ -102,7 +102,7 @@ def clean_for_json(data):
 
 def main():
     parser = argparse.ArgumentParser(description="Enhanced WHOIS and DNS Recon Tool")
-    parser.add_argument("domain", nargs='?', type=str, help="Target domain (example.com)")
+    parser.add_argument("domain", nargs='?', type=str, help="Target domain (example.com)") #Optional argument for domain nargs='?' allows it to be optional
     parser.add_argument("--json", action="store_true", help="Print output in JSON format")
     args = parser.parse_args()
 
